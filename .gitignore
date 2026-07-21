@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+
+config.toml
+aux_data/
+outputs/*
+!outputs/.gitkeep

@@ -1,0 +1,20 @@
+[paths]
+# ISIMIP3b climate root; scenario and GCM are appended by the script.
+isimip3b_root = "/path/to/ISIMIP3b/bin"
+
+# ISIMIP3a GSWP3-W5E5 binary climate directory.
+obsclim_root = "/path/to/GSWP3-W5E5/bin"
+
+# ISIMIP3b reference-scenario root used for the 2015 climate read.
+reference_climate_root = "/path/to/ISIMIP3b/bin/ssp245"
+
+# Local auxiliary inputs; paths may be relative to this configuration file.
+landmap = "aux_data/land-map.bin"
+co2_historical = "aux_data/co2_historical_annual_1765_2014.txt"
+co2_future = "/path/to/co2/co2_ssp126_annual_2015_2100.txt"
+location_template = "aux_data/CLIMATE_LAT_PD_HD_PHU_ELEV_PRMT74_{crop}_noirr_fH_v3d.csv"
+mask = "aux_data/spam2020_V2r2_global_A_allcrp_A_30mn.tif"
+
+# Destination for generated Parquet files.
+output_dir = "outputs"
+output_filename_template = "climate_agg_{ssp}_{gcm}_{crop}_noirr.parquet"

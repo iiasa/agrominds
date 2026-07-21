@@ -1,0 +1,16 @@
+# Requires Python 3.11+ (for tomllib).
+
+# Processing workflow
+numpy
+pandas
+polars
+xarray
+netCDF4
+rasterio
+scikit-learn
+tqdm
+
+# Included notebooks
+matplotlib
+scipy
+cartopy
