@@ -16,7 +16,7 @@ HD modes:
       GDD approach *or* max. 21 days after the calendar HD.
     * dynamic: Defines the GS as the period between PD and GDD-calculated HD.
 General:
-    * The master file is a polars DataFrame containing LAT, LON of the pixels to be processed, 
+    * The master file is a polars DataFrame containing lat, lon of the pixels to be processed, 
       the crop calendar PD and [HD], PHU for HUI calculation, ELEV and PRMT74 for PET.
 
 """
@@ -126,35 +126,35 @@ def read_co2(path: Path, year_from: int, year_to: int | None = None) -> pl.DataF
 def compress(df: pl.DataFrame, decompress: bool = False) -> pl.DataFrame:
     ex = []
     for col, f, ctype in [
-        ("TMXav", 100, pl.Int16),
-        ("TMNav", 100, pl.Int16),
-        ("TAVav", 100, pl.Int16),
-        ("PRCPsum", 1, pl.UInt16),
-        ("RADsum", 1, pl.UInt16),
-        ("WSDav", 100, pl.UInt16),
-        ("HURav", 1000, pl.UInt16),
-        ("PETsum", 10, pl.UInt16),
-        ("GDDsum", 1, pl.UInt16),
-        ("CMDsum", 1, pl.Int16),
-        ("LEN", 1, pl.UInt16),
-        ("HUIeop", 1000, pl.UInt16),
-        ("YR", 1, pl.UInt16),
-        ("LAT", 100, pl.Int16),
-        ("LON", 100, pl.Int16),
-        ("HDD", 1, pl.UInt16),
-        ("KDD", 1, pl.UInt16),
-        ("FRT", 1, pl.UInt16),
-        ("ICE", 1, pl.UInt16),
-        ("R10", 1, pl.UInt16),
-        ("R20", 1, pl.UInt16),
-        ("WET", 1, pl.UInt16),
-        ("DRY", 1, pl.UInt16),
-        ("CMDgt0", 1, pl.UInt16),
-        ("CWD", 1, pl.UInt16),
-        ("CDD", 1, pl.UInt16),
+        ("tmx_av", 100, pl.Int16),
+        ("tmn_av", 100, pl.Int16),
+        ("tav_av", 100, pl.Int16),
+        ("prcp_sum", 1, pl.UInt16),
+        ("swr_sum", 1, pl.UInt16),
+        ("ws_av", 100, pl.UInt16),
+        ("rh_av", 1000, pl.UInt16),
+        ("pet_sum", 10, pl.UInt16),
+        ("gdd_sum", 1, pl.UInt16),
+        ("cmd_sum", 1, pl.Int16),
+        ("len", 1, pl.UInt16),
+        ("hui", 1000, pl.UInt16),
+        ("yr", 1, pl.UInt16),
+        ("lat", 100, pl.Int16),
+        ("lon", 100, pl.Int16),
+        ("hdd", 1, pl.UInt16),
+        ("kdd", 1, pl.UInt16),
+        ("frt", 1, pl.UInt16),
+        ("ice", 1, pl.UInt16),
+        ("r10", 1, pl.UInt16),
+        ("r20", 1, pl.UInt16),
+        ("wet", 1, pl.UInt16),
+        ("dry", 1, pl.UInt16),
+        ("mdd", 1, pl.UInt16),
+        ("cwd", 1, pl.UInt16),
+        ("cdd", 1, pl.UInt16),
     ]:
         if not decompress:
-            if col == "PETsum":
+            if col == "pet_sum":
                 expr = pl.col(col).clip(lower_bound=0)
             else:
                 expr = pl.col(col)

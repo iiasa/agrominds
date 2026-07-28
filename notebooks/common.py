@@ -13,35 +13,35 @@ crops = ["mai", "ri1", "ri2", "soy", "swh"]
 def compress(df: pl.DataFrame, decompress: bool = False) -> pl.DataFrame:
     ex = []
     for col, f, ctype in [
-        ("TMXav", 100, pl.Int16),
-        ("TMNav", 100, pl.Int16),
-        ("TAVav", 100, pl.Int16),
-        ("PRCPsum", 1, pl.UInt16),
-        ("RADsum", 1, pl.UInt16),
-        ("WSDav", 100, pl.UInt16),
-        ("HURav", 1000, pl.UInt16),
-        ("PETsum", 10, pl.UInt16),
-        ("GDDsum", 1, pl.UInt16),
-        ("CMDsum", 1, pl.Int16),
-        ("LEN", 1, pl.UInt16),
-        ("HUIeop", 1000, pl.UInt16),
-        ("YR", 1, pl.UInt16),
-        ("LAT", 100, pl.Int16),
-        ("LON", 100, pl.Int16),
-        ("HDD", 1, pl.UInt16),
-        ("KDD", 1, pl.UInt16),
-        ("FRT", 1, pl.UInt16),
-        ("ICE", 1, pl.UInt16),
-        ("R10", 1, pl.UInt16),
-        ("R20", 1, pl.UInt16),
-        ("WET", 1, pl.UInt16),
-        ("DRY", 1, pl.UInt16),
-        ("CMDgt0", 1, pl.UInt16),
-        ("CWD", 1, pl.UInt16),
-        ("CDD", 1, pl.UInt16),
+        ("tmx_av", 100, pl.Int16),
+        ("tmn_av", 100, pl.Int16),
+        ("tav_av", 100, pl.Int16),
+        ("prcp_sum", 1, pl.UInt16),
+        ("swr_sum", 1, pl.UInt16),
+        ("ws_av", 100, pl.UInt16),
+        ("rh_av", 1000, pl.UInt16),
+        ("pet_sum", 10, pl.UInt16),
+        ("gdd_sum", 1, pl.UInt16),
+        ("cmd_sum", 1, pl.Int16),
+        ("len", 1, pl.UInt16),
+        ("hui", 1000, pl.UInt16),
+        ("yr", 1, pl.UInt16),
+        ("lat", 100, pl.Int16),
+        ("lon", 100, pl.Int16),
+        ("hdd", 1, pl.UInt16),
+        ("kdd", 1, pl.UInt16),
+        ("frt", 1, pl.UInt16),
+        ("ice", 1, pl.UInt16),
+        ("r10", 1, pl.UInt16),
+        ("r20", 1, pl.UInt16),
+        ("wet", 1, pl.UInt16),
+        ("dry", 1, pl.UInt16),
+        ("mdd", 1, pl.UInt16),
+        ("cwd", 1, pl.UInt16),
+        ("cdd", 1, pl.UInt16),
     ]:
         if not decompress:
-            if col == "PETsum":
+            if col == "pet_sum":
                 expr = pl.col(col).clip(lower_bound=0)
             else:
                 expr = pl.col(col)
@@ -92,8 +92,8 @@ def load_spam_w(path_mask: Path) -> pl.DataFrame:
     )
     
     spam_area = pl.DataFrame({
-        "LAT": np.asarray(lat),
-        "LON": np.asarray(lon),
+        "lat": np.asarray(lat),
+        "lon": np.asarray(lon),
         "W": area[rows, cols],
     })
 
@@ -101,16 +101,16 @@ def load_spam_w(path_mask: Path) -> pl.DataFrame:
     spam_halfdeg = (
         spam_area
         .with_columns(
-            ((pl.col("LAT") * 2).floor() / 2 + 0.25).alias("LAT_05"),
-            ((pl.col("LON") * 2).floor() / 2 + 0.25).alias("LON_05"),
+            ((pl.col("lat") * 2).floor() / 2 + 0.25).alias("lat_05"),
+            ((pl.col("lon") * 2).floor() / 2 + 0.25).alias("lon_05"),
         )
-        .group_by(["LAT_05", "LON_05"])
+        .group_by(["lat_05", "lon_05"])
         .agg(
             pl.col("W").sum().alias("W")
         )
         .rename({
-            "LAT_05": "LAT",
-            "LON_05": "LON",
+            "lat_05": "lat",
+            "lon_05": "lon",
         })
     )
 

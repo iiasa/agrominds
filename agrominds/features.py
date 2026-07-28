@@ -524,42 +524,42 @@ def  process_climate_features(df: pl.DataFrame, crop: Crop, calculate_hd: Litera
     df = add_streak_ids(df)
 
     aggregates = [
-        pl.col("tasmax").mean().alias("TMXav"),
-        pl.col("tasmin").mean().alias("TMNav"),
-        pl.col("tav").mean().alias("TAVav"),
+        pl.col("tasmax").mean().alias("tmx_av"),
+        pl.col("tasmin").mean().alias("tmn_av"),
+        pl.col("tav").mean().alias("tav_av"),
 
-        pl.col("pr").sum().alias("PRCPsum"),
-        pl.col("rsds").sum().alias("RADsum"),
+        pl.col("pr").sum().alias("prcp_sum"),
+        pl.col("rsds").sum().alias("swr_sum"),
 
-        pl.col("sfcwind").mean().alias("WSDav"),
-        pl.col("hurs").mean().alias("HURav"),
+        pl.col("sfcwind").mean().alias("ws_av"),
+        pl.col("hurs").mean().alias("rh_av"),
 
-        pl.col("pet").sum().alias("PETsum"),
-        pl.col("gdd").sum().alias("GDDsum"),
-        pl.col("cmd").sum().alias("CMDsum"),
+        pl.col("pet").sum().alias("pet_sum"),
+        pl.col("gdd").sum().alias("gdd_sum"),
+        pl.col("cmd").sum().alias("cmd_sum"),
 
-        pl.len().alias("LEN"),
-        pl.col("hui").last().alias("HUIeop"),
-        pl.col("year").first().alias("YR")
+        pl.len().alias("len"),
+        pl.col("hui").last().alias("hui"),
+        pl.col("year").first().alias("yr")
     ]
 
     counts = [
         # temperature extremes
-        (pl.col("tasmax") >= 30).sum().alias("HDD"),
-        (pl.col("tasmax") >= 39).sum().alias("KDD"),
-        (pl.col("tasmin") <= 0).sum().alias("FRT"),
-        (pl.col("tasmax") <= 0).sum().alias("ICE"),
+        (pl.col("tasmax") >= 30).sum().alias("hdd"),
+        (pl.col("tasmax") >= 39).sum().alias("kdd"),
+        (pl.col("tasmin") <= 0).sum().alias("frt"),
+        (pl.col("tasmax") <= 0).sum().alias("ice"),
 
         # precipitation thresholds
-        (pl.col("pr") >= 10.0).sum().alias("R10"),
-        (pl.col("pr") >= 20.0).sum().alias("R20"),
+        (pl.col("pr") >= 10.0).sum().alias("r10"),
+        (pl.col("pr") >= 20.0).sum().alias("r20"),
 
         # wet / dry days
-        (pl.col("pr") > 1.0).sum().alias("WET"),
-        (pl.col("pr") <= 1.0).sum().alias("DRY"),
+        (pl.col("pr") > 1.0).sum().alias("wet"),
+        (pl.col("pr") <= 1.0).sum().alias("dry"),
 
         # CMD < 0
-        ((pl.col("cmd")) > 0).sum().alias("CMDgt0"),
+        ((pl.col("cmd")) > 0).sum().alias("mdd"),
     ]
 
     # Replace NaNs with null to make aggregation work across

@@ -334,17 +334,10 @@ df = (
     pl.concat(blocks, how="vertical")
     .join(pxmap, on="pixel")
     .drop("pixel", "gs")
-    .rename({
-        "cwd": "CWD",
-        "cdd": "CDD",
-        "period": "PERIOD",
-        "lat": "LAT",
-        "lon": "LON"
-    })
 )
 
 if ssp == "historical":
-    df = df.filter(pl.col("YR") < 2015)
+    df = df.filter(pl.col("yr") < 2015)
 
 df = compress(df)
 
