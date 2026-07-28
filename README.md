@@ -1,5 +1,7 @@
 # AGROMINDS
 
+[![Tests](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+
 AGROMINDS generates annually resolved agro-meteorological indicators for
 crop-specific growing seasons from daily climate data and crop calendars.
 
