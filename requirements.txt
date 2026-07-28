@@ -9,6 +9,7 @@ netCDF4
 rasterio
 scikit-learn
 tqdm
+pytest
 
 # Included notebooks
 matplotlib
