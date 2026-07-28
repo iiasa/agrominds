@@ -17,4 +17,3 @@ mask = "aux_data/spam2020_V2r2_global_A_allcrp_A_30mn.tif"
 
 # Destination for generated Parquet files.
 output_dir = "outputs"
-output_filename_template = "climate_agg_{ssp}_{gcm}_{crop}_noirr.parquet"

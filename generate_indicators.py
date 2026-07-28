@@ -81,9 +81,10 @@ path_co2 = Path(
 path_location = config_path_value(
     paths_config["location_template"].format(crop=crop_arg)
 )
-path_out = config_path_value(paths_config["output_dir"]) / paths_config[
-    "output_filename_template"
-].format(ssp=ssp, gcm=gcm, crop=crop_arg)
+path_out = (
+    config_path_value(paths_config["output_dir"])
+    / f"agrominds_{gcm}_{ssp}_{crop_arg}_rf.parquet"
+)
 path_mask = config_path_value(paths_config["mask"])
 
 if gcm == "UKESM1-0-LL":
