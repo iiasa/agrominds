@@ -92,7 +92,7 @@ class ClimateBinIterator:
         )
 
 def read_co2(path: Path, year_from: int, year_to: int | None = None) -> pl.DataFrame:
-    data = pd.read_fwf(path)
+    data = pd.read_fwf(path, header=None)
     data.columns = ['year', 'co2']
     data.set_index('year', inplace=True)
     data = data.loc[year_from:]
