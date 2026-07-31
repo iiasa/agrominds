@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agrominds"
+version = "0.1.0"
+description = "Agrometeorological indicator processing for crop-specific growing seasons."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [ { name = "International Institute for Applied Systems Analysis" } ]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "polars",
+    "xarray",
+    "netCDF4",
+    "rasterio",
+    "scikit-learn",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+docs = ["matplotlib", "scipy", "cartopy"]
+
+[project.scripts]
+agrominds = "agrominds.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agrominds*"]
