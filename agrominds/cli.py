@@ -112,7 +112,7 @@ def main(argv: list[str] | None = None) -> None:
         resolve_path(paths_config["co2_historical"]) if args.ssp in {"historical", "obsclim"} else resolve_path(co2_future_template.format(ssp=args.ssp))
     )
     path_location = resolve_path(paths_config["location_template"].format(crop=args.crop))
-    path_out = resolve_path(paths_config["output_dir"]) / f"agrominds_{args.gcm}_{args.ssp}_{args.crop}_rf.parquet"
+    path_out = resolve_path(paths_config["output_dir"]) / f"agrominds_{args.gcm.lower()}_{args.ssp}_{args.crop}_rf.parquet"
     path_mask = resolve_path(paths_config["mask"])
 
     if args.ssp != "obsclim":
