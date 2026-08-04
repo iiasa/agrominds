@@ -9,7 +9,7 @@ for every file used to generate a dataset release.
 
 | Local file or pattern | Role | Authoritative source / status |
 | --- | --- | --- |
-| `CLIMATE_LAT_PD_HD_PHU_ELEV_PRMT74_{crop}_noirr_fH_v3d.csv` | Crop-specific master location tables: coordinates, calendar dates, potential heat units, elevation, and PET parameters. | Project-derived input. These tables should not be redistributed until their complete build procedure and all upstream licences are documented. Their calendar component is derived from the GGCMI Phase 3 crop calendar. |
+| `CLIMATE_LAT_PD_HD_PHU_ELEV_PRMT74_{crop}_noirr_fH_v3d.csv` | Crop-specific master location tables: coordinates, calendar dates, potential heat units, elevation, and PET parameters. | Dataset; cite Folberth et al. (2026)
 | `land-map.bin` | Mapping from the regular 0.5-degree grid to positions in climate binary files. | Derived from CROMES v1.0; cite Folberth et al. (2025). |
 | `co2_historical_annual_1765_2014.txt` | Historical annual atmospheric CO₂ concentrations. | ISIMIP3b climate-related forcing; cite Frieler et al. (2026). |
 | `spam2020_V2r2_global_A_allcrp_A_30mn.tif` | Cropland mask used by `generate_indicators.py`. | SPAM 2020 Version 2.0 Release 2; cite IFPRI (2026). |
@@ -19,9 +19,10 @@ The code also requires daily climate forcing, configured through
 `isimip3b_root`, `obsclim_root`, and `reference_climate_root` in `config.toml`.
 These inputs are external and are not stored in this repository.
 
-## Master location-table format
+## Global crop parameter dataset
 
-The crop-specific CSVs use the following structure. This example shows the
+The crop-specific CSVs can be found on [https://doi.org/10.5281/zenodo.21790144](https://doi.org/10.5281/zenodo.21790144) 
+and use the following structure. This example shows the
 header and first five data rows of the maize table;
 `CLIMATEID` identifies the climate-grid cell, `YLAT`/`XLON` are its centre
 coordinates, `PLDOY`/`HRDOY` are planting and harvest day-of-year values, and
@@ -55,6 +56,10 @@ coordinates, `PLDOY`/`HRDOY` are planting and harvest day-of-year values, and
   Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0
   Release 2* (Version V6). Harvard Dataverse.
   [https://doi.org/10.7910/DVN/SWPENT](https://doi.org/10.7910/DVN/SWPENT)
+
+- Folberth, C., Balkovic, J., Skalsky, R.& Oberleitner, T. (2026). *Global crop 
+  parameter dataset for AGROMINDS* [Dataset]. Zenodo. 
+  [https://doi.org/10.5281/zenodo.21790144](https://doi.org/10.5281/zenodo.21790144)
 
 ## Crop calendars
 
