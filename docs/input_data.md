@@ -9,7 +9,7 @@ for every file used to generate a dataset release.
 
 | Local file or pattern | Role | Authoritative source / status |
 | --- | --- | --- |
-| `CLIMATE_LAT_PD_HD_PHU_ELEV_PRMT74_{crop}_noirr_fH_v3d.csv` | Crop-specific master location tables: coordinates, calendar dates, potential heat units, elevation, and PET parameters. | Dataset; cite Folberth et al. (2026)
+| `CLIMATE_LAT_PD_HD_PHU_ELEV_PRMT74_{crop}_{rf\|irr}.csv` | Crop-specific master location tables: coordinates, calendar dates, potential heat units, elevation, and PET parameters. | Dataset; cite Folberth et al. (2026)
 | `land-map.bin` | Mapping from the regular 0.5-degree grid to positions in climate binary files. | Derived from CROMES v1.0; cite Folberth et al. (2025). |
 | `co2_historical_annual_1765_2014.txt` | Historical annual atmospheric CO₂ concentrations. | ISIMIP3b climate-related forcing; cite Frieler et al. (2026). |
 | `spam2020_V2r2_global_A_allcrp_A_30mn.tif` | Cropland mask used by `generate_indicators.py`. | SPAM 2020 Version 2.0 Release 2; cite IFPRI (2026). |
